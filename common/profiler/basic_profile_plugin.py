@@ -55,12 +55,13 @@ def pytest_runtest_call(item):
     outcome = yield
     item.profiler.disable() if item.enabled else None
 
-    result = None if outcome is None else outcome.get_result()
+    # result = None if outcome is None else outcome.get_result()
+    run_exceptions = None if outcome is None else outcome.excinfo
     # Item's excinfo will indicate any exceptions thrown
     # excinfo does not appear to exist ... removing it for now
     # 3/3 - looks like excinfo is a field with outcome and not with item.
     #if item.enabled and item.excinfo is None:
-    if item.enabled and outcome.excinfo is None:
+    if item.enabled and run_exceptions is None:
         # item.listnames() returns list of form:
         # [<package name>, <test path>, <test classname>, <test function name>]
         fp = FunctionProfile(profiler=item.profiler, test_function_name=item.listnames()[-1])
