@@ -17,3 +17,16 @@ Travis-CI
 ----
 
 This sandbox exercises simple pytest tests using travis-ci.
+
+Notes
+----
+
+There exists a cProfile plugin "pytest_profiling" that can be installed via
+
+*pip install pytest_profiling*
+
+However this plugin probably does not provide the flexibility we need
+to achieve the goals set out. For example, it currently changes the
+test result to issue a warning and I do not really want that. At this
+stage of the game however, it is functionally equivalent if not better
+than the basic profiler plugin written.
